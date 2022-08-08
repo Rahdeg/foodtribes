@@ -5,3 +5,5 @@ export {default as Pay} from './Pay';
 export {default as Home} from './Maincontainer';
 export {default as Loader} from './Loader';
 export {default as Rowcontainer} from './Rowcontainer'
+export {default as Menucontainer} from './Menucontainer'
+export {default as Cartcontainer} from './Cartcontainer'
