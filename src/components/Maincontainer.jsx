@@ -49,7 +49,7 @@ const Maincontainer = () => {
         />
       </section>
       <Menucontainer/>
-      <Cartcontainer/>
+     
     </div>
   );
 };
