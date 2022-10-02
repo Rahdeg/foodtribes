@@ -7,3 +7,5 @@ export {default as Loader} from './Loader';
 export {default as Rowcontainer} from './Rowcontainer'
 export {default as Menucontainer} from './Menucontainer'
 export {default as Cartcontainer} from './Cartcontainer'
+export {default as Cartitem} from './Cartitem'
+export {default as pay} from './Pay'

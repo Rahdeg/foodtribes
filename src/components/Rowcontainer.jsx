@@ -1,14 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
 import Notfound from '../img/NotFound.svg'
+import { useStateValue } from "../context/contextProvider";
+import { actionType } from "../context/reducer";
 
 const Rowcontainer = ({ flag , data,scrolvalue}) => {
-  const rowcontainer = useRef()
+  const rowcontainer = useRef();
+  const [{ cartItem }, dispatch] = useStateValue();
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('cartItem')));
   useEffect(() => {
    rowcontainer.current.scrollLeft += scrolvalue;
   }, [scrolvalue])
   
+  const addToCart =()=>{
+    
+    dispatch({
+        type:actionType.SET_CART_ITEM,
+         cartItem:items,
+      });
+      localStorage.setItem("cartItem",JSON.stringify(items));
+  }
+
+  useEffect(() => {
+  addToCart();
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items])
+  
+
   return (
     <div
       ref={rowcontainer}
@@ -22,13 +42,14 @@ const Rowcontainer = ({ flag , data,scrolvalue}) => {
       <div className="w-full flex items-center justify-between " key={idx}>
         <motion.img
           whileHover={{ scale: 1.2 }}
-          src={item?.imageUrl}
+          src={item.imageUrl}
           className="w-40 h-40 -mt-8 drop-shadow-2xl"
           alt="ice"
         />
         <motion.div
           whileTap={{ scale: 0.75 }}
           className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center cursor-pointer hover:shadow-md"
+          onClick={()=>setItems([...cartItem,item])}
         >
           <MdShoppingBasket className=" text-lg font-semibold text-white" />
         </motion.div>

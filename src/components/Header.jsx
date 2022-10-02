@@ -14,8 +14,15 @@ const Header = () => {
   const firebaseAuth= getAuth(app);
   const provider= new GoogleAuthProvider();
 
-  const [{user},dispatch] = useStateValue();
+  const [{user,cartShow,cartItem},dispatch] = useStateValue();
   const [ismenu, setismenu] = useState(false)
+
+  const displayCart =()=>{
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow:!cartShow ,
+    });
+  }
 
 const logout=()=>{
   setismenu(false);
@@ -29,6 +36,7 @@ const logout=()=>{
 
 const login= async ()=>{
   if (!user) {
+    // eslint-disable-next-line no-unused-vars
     const {user:{refreshToken,providerData}}= await signInWithPopup(firebaseAuth,provider)
   dispatch({
     type:actionType.SET_USER,
@@ -58,16 +66,20 @@ const login= async ()=>{
   animate={{opacity:1,x:0}}
   exit={{opacity:0,x:200}} 
     className='flex items-center gap-8 '>
-    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>Home</li>
-    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>Menu</li>
+    <Link to={'/'} ><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>Home</li></Link>
+    <Link to={'/menu'}><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>Menu</li></Link>
     <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>About Us</li>
     <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer'>Services</li>
   </motion.ul>
-  <div className='reltive flex items-center justify-center'>
+  <div 
+  onClick={displayCart}
+  className='reltive flex items-center justify-center'>
   <MdShoppingBasket className=' text-textColor text-2xl cursor-pointer'/>
-  <div className='w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-  <p className=' text-xs font-semibold text-white'>2</p>
+  {cartItem && cartItem.length>0 && (
+    <div className='w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+  <p className=' text-xs font-semibold text-white'>{cartItem.length}</p>
   </div> 
+  )}
   </div>
   <div className='relative'>
   <motion.img 
@@ -86,11 +98,15 @@ const login= async ()=>{
     </div>
      { /*mobile*/}
      <div className='flex  items-center justify-between md:hidden w-full h-full'>
-     <div className='reltive flex items-center px-4 py-4 hover:bg-slate-100 duration-100 transition-all ease-in-out cursor-pointer'>
+     <div 
+     onClick={displayCart}
+     className='reltive flex items-center px-4 py-4 hover:bg-slate-100 duration-100 transition-all ease-in-out cursor-pointer'>
   <MdShoppingBasket className=' text-textColor text-2xl cursor-pointer'/>
-  <div className='w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-  <p className=' text-xs font-semibold text-white'>2</p>
+  {cartItem && cartItem.length>0 && (
+    <div className='w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+  <p className=' text-xs font-semibold text-white'>{cartItem.length}</p>
   </div> 
+  )}
   </div>
      <Link to={'/'} 
     className='flex items-center gap-2'>
@@ -111,8 +127,8 @@ const login= async ()=>{
   exit={{opacity:0,scale:0.6}}
   className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col  absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/createitem'}><p className='flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base'>Newitem <MdAdd/></p></Link>)}  
   <ul className='flex flex-col'>
-    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4'>Home</li>
-    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>Menu</li>
+   <Link to={'/'}> <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4'>Home</li></Link>
+    <Link to={'/menu'}><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>Menu</li></Link>
     <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>About Us</li>
     <li className=' text-base text-textColor hover:text-headingColor  hover:bg-slate-100 duration-100 transition-all ease-in-out cursor-pointer px-4 py-4'>Services</li>
   </ul>
