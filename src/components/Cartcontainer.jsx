@@ -3,6 +3,8 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiRefreshFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useStateValue } from "../context/contextProvider";
+import {getAuth,signInWithPopup,GoogleAuthProvider} from 'firebase/auth'
+import {app} from '../Firebase.config'
 import { actionType } from "../context/reducer";
 import emtycart from '../img/emptyCart.svg'
 import Cartitem from "./Cartitem";
@@ -11,9 +13,12 @@ const Cartcontainer = () => {
   const [{ cartShow,cartItem,user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState('');
   const [tot, settot] = useState('');
+  const firebaseAuth= getAuth(app);
+  const provider= new GoogleAuthProvider();
+  const [ismenu, setismenu] = useState(false)
 
   useEffect(() => {
-    let totalPrice = cartItem.reduce(function(acc,item){
+    let totalPrice = cartItem?.reduce(function(acc,item){
       return acc + item.qty * item.price;
     },0)
     settot(totalPrice);
@@ -21,6 +26,20 @@ const Cartcontainer = () => {
   
   }, [tot,flag,cartItem])
   
+  const login= async ()=>{
+    if (!user) {
+      // eslint-disable-next-line no-unused-vars
+      const {user:{refreshToken,providerData}}= await signInWithPopup(firebaseAuth,provider)
+    dispatch({
+      type:actionType.SET_USER,
+      user:providerData[0],
+    })
+    localStorage.setItem('user',JSON.stringify(providerData[0]))
+    } else {
+      setismenu(!ismenu)
+    }
+    
+  }
 
   const clearitems =()=>{
     dispatch({
@@ -90,13 +109,16 @@ const Cartcontainer = () => {
                 whileTap={{scale:0.8}} 
                 type='button'
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg ">
+                
                 Check Out
                 </motion.button>
               ):(
                 <motion.button
                 whileTap={{scale:0.8}} 
                 type='button'
-                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg ">
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg "
+                onClick={login}
+                >
                 Login to Checkout
                 </motion.button>
               )
