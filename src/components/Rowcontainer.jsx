@@ -5,10 +5,11 @@ import Notfound from '../img/NotFound.svg'
 import { useStateValue } from "../context/contextProvider";
 import { actionType } from "../context/reducer";
 
+
 const Rowcontainer = ({ flag , data,scrolvalue}) => {
   const rowcontainer = useRef();
   const [{ cartItem }, dispatch] = useStateValue();
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('cartItem')));
+  const [items, setItems] = useState(cartItem);
   useEffect(() => {
    rowcontainer.current.scrollLeft += scrolvalue;
   }, [scrolvalue])
