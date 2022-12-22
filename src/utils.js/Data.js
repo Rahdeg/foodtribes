@@ -20,13 +20,13 @@ export const heropdata = [
         imgsrc:F1
      },
      {
-        id:1,
+        id:3,
         name:'Chicken Kebab',
         descp:'Mixed Kebab Plate',
         price: "10.25 ",
         imgsrc:C3
      },{
-        id:1,
+        id:4,
         name:'Fish Kebab',
         descp:'Mixed Fish Kebab',
         price: "11.25 ",
@@ -41,33 +41,66 @@ export const categories=[
         urlParamName:"chicken"
     },
     {
-        id:1,
+        id:2,
         name:"Curry",
         urlParamName:"curry"
     },
     {
-        id:1,
+        id:3,
         name:"Rice",
         urlParamName:"rice"
     },
     {
-        id:1,
+        id:4,
         name:"Fruits",
         urlParamName:"fruits"
     },
     {
-        id:1,
+        id:5,
         name:"Snacks",
         urlParamName:"snacks"
     },
     {
-        id:1,
+        id:6,
         name:"Icecream",
         urlParamName:"icecream"
     }, 
     {
-        id:1,
+        id:7,
         name:"Soft Drinks",
         urlParamName:"drinks"
+    }
+]
+
+export const locations=[
+    {
+        id:1,
+        name:"itaoshin-lafenwa",
+    },
+    {
+        id:2,
+        name:"adatan-sapon",
+       
+    },
+    {
+        id:3,
+        name:"camp-obantoko",
+    },
+    {
+        id:4,
+        name:"panseke-obada",
+    },
+    {
+        id:5,
+        name:"kuto-okeilewo",
+
+    },
+    {
+        id:6,
+        name:"abiolaway-kuto",
+    }, 
+    {
+        id:1,
+        name:"lafenwa-elega",
     }
 ]

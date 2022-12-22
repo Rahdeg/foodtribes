@@ -30,7 +30,6 @@ const Createitem = () => {
     uploadTask.on('state_changed',(snapshot)=>{
     const uploadProgress =(snapshot.bytesTransferred/snapshot.totalBytes)*100;
     },(error)=>{
-      console.log(error);
       setfield(true)
       setmsg('Error while uploading : Try again ')
       setalertstatus("danger")

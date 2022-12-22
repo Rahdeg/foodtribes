@@ -1,5 +1,5 @@
 import './App.css';
-import {Header,Maincontainer,Createitem,Pay,Menucontainer} from './components'
+import {Header,Maincontainer,Pay,Menucontainer,Createitem, Bike} from './components'
 import { Route,Routes} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 import { useStateValue } from './context/contextProvider';
@@ -7,6 +7,7 @@ import { getAllItems } from './utils.js/firebasefunctions';
 import { useEffect } from 'react';
 import { actionType } from './context/reducer';
 import {Helmet} from "react-helmet";
+import { Adminboard } from './Dashboard';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -40,8 +41,10 @@ function App() {
      <Routes>
       <Route path='/*' element={<Maincontainer/>} />
       <Route path='/menu' element={<Menucontainer/>} />
-      <Route path='/createitem' element={<Createitem/>} />
+      <Route path='/dashboard/*' element={<Adminboard/>} />
       <Route path='/pay' element={<Pay/>} />
+      <Route path='/bike' element={<Bike/>} />
+      <Route path='/createitem' element={<Createitem/>} />
      </Routes>
      </main>
     </div>

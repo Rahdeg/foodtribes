@@ -8,6 +8,7 @@ import {getAuth,signInWithPopup,GoogleAuthProvider} from 'firebase/auth'
 import {app} from '../Firebase.config'
 import { useStateValue } from '../context/contextProvider'
 import { actionType } from '../context/reducer'
+import { saveUser } from '../utils.js/firebasefunctions'
 
 const Header = () => {
 
@@ -16,6 +17,11 @@ const Header = () => {
 
   const [{user,cartShow,cartItem},dispatch] = useStateValue();
   const [ismenu, setismenu] = useState(false)
+
+  var date = new Date();
+	var current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+  var current_time = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+
 
   const displayCart =()=>{
     dispatch({
@@ -42,6 +48,17 @@ const login= async ()=>{
     type:actionType.SET_USER,
     user:providerData[0],
   })
+  const data={
+    id:`${Date.now()}`,
+    name:providerData[0].displayName,
+    number:providerData[0].phoneNumber,
+    email:providerData[0].email,
+    image:providerData[0].photoURL,
+    uid:providerData[0].uid,
+    provider:providerData[0].providerId,
+    createdAt:[current_date,current_time],
+  }
+  saveUser(data);
   localStorage.setItem('user',JSON.stringify(providerData[0]))
   } else {
     setismenu(!ismenu)
@@ -92,7 +109,7 @@ const login= async ()=>{
   initial={{opacity:0,scale:0.6}}
   animate={{opacity:1,scale:1}}
   exit={{opacity:0,scale:0.6}}
-  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col px-4 py-2 absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/createitem'}><p className='flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base' onClick={()=>setismenu(false)}>Newitem <MdAdd/></p></Link>)}  <p className='flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base' onClick={logout}>Logout <MdLogout/></p> </motion.div> )}
+  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col px-4 py-2 absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/dashboard/home'} ><p className='flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base' onClick={()=>setismenu(false)}>Dashboard <MdAdd/></p></Link>)}<p className='flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base' onClick={logout}>Logout <MdLogout/></p> </motion.div> )}
   </div>
   </div>
     </div>
@@ -125,7 +142,7 @@ const login= async ()=>{
   initial={{opacity:0,scale:0.6}}
   animate={{opacity:1,scale:1}}
   exit={{opacity:0,scale:0.6}}
-  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col  absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/createitem'}><p className='flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base'>Newitem <MdAdd/></p></Link>)}  
+  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col  absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/dashboard/home'}><p className='flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base'>Dashboard <MdAdd/></p></Link>)}  
   <ul className='flex flex-col'>
    <Link to={'/'}> <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4'>Home</li></Link>
     <Link to={'/menu'}><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>Menu</li></Link>

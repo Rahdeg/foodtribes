@@ -8,6 +8,7 @@ import {app} from '../Firebase.config'
 import { actionType } from "../context/reducer";
 import emtycart from '../img/emptyCart.svg'
 import Cartitem from "./Cartitem";
+import { NavLink } from "react-router-dom";
 
 const Cartcontainer = () => {
   const [{ cartShow,cartItem,user }, dispatch] = useStateValue();
@@ -109,8 +110,10 @@ const Cartcontainer = () => {
                 whileTap={{scale:0.8}} 
                 type='button'
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg ">
-                
+                <NavLink to={'/pay'}className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg " >
                 Check Out
+      </NavLink>
+               
                 </motion.button>
               ):(
                 <motion.button

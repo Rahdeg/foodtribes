@@ -38,9 +38,11 @@ const Rowcontainer = ({ flag , data,scrolvalue}) => {
       }`}
     >
     {data && data.length >0 ? data.map((item,idx)=>(
-      <div className="w-300 min-w-[300px] md:min-w-[340px] md:w-350 h-auto bg-cardOverlay backdrop-blur-lg my-12 p-2 hover:drop-shadow-lg cursor-pointer rounded-md flex flex-col items-center justify-between">
+      <div 
+      key={idx}
+      className="w-300 min-w-[300px] md:min-w-[340px] md:w-350 h-auto bg-cardOverlay backdrop-blur-lg my-12 p-2 hover:drop-shadow-lg cursor-pointer rounded-md flex flex-col items-center justify-between">
       
-      <div className="w-full flex items-center justify-between " key={idx}>
+      <div className="w-full flex items-center justify-between " >
         <motion.img
           whileHover={{ scale: 1.2 }}
           src={item.imageUrl}
