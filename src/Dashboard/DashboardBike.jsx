@@ -9,7 +9,7 @@ import { Bikecard } from './Cards';
 
 const DashboardBike = () => {
   const [{bikedetails }, dispatch] = useStateValue();
-  const [bikefilter, setbikefilter] = useState('');
+  const [searchfield, setsearchfield] = useState('');
   const [isfocus, setisfocus] = useState(false);
 
   useEffect(() => {
@@ -23,6 +23,12 @@ const DashboardBike = () => {
     }
   }, [])
 
+  // const filtereditem = bikedetails.filter(item =>{
+  //   return item.name.toLowerCase().includes(searchfield.toLowerCase());
+  // })
+
+  // console.log('see',filtereditem)
+
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
     <div className='w-full flex items-center justify-center gap-20'>
@@ -31,8 +37,8 @@ const DashboardBike = () => {
       </NavLink>
       <input 
       className={`w-52 px-4 py-2 border ${isfocus? " border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-transparent outline-none duration-500 transition-all ease-in-out text-base text-textColor font-semibold`}
-      type='text' placeholder='search here ...' value={bikefilter} 
-      onChange={(e)=>setbikefilter(e.target.value)}
+      type='text' placeholder='search here ...' value={searchfield} 
+      onChange={(e)=>setsearchfield(e.target.value)}
       onBlur={()=>setisfocus(false)}
       onFocus={()=>setisfocus(true)}
       />
@@ -74,7 +80,7 @@ const DashboardBike = () => {
      {
       bikedetails && (
         bikedetails.map((data,idx)=>(
-           <Bikecard data={data} idx={idx} />
+           <Bikecard data={data} idx={idx}  />
            
          ))
        )

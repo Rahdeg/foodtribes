@@ -24,7 +24,6 @@ const Bikecard = ({data, idx}) => {
   
   return (
     <motion.div 
-    key={idx}
     className="relative w-full rounded-md flex items-center justify-between py-4 bg-lightOverlay cursor-pointer hover:bg-card hover:shadow-md">
     {
         bikedetails && (

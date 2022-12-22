@@ -5,6 +5,8 @@ import { MdDelete } from 'react-icons/md'
 
 
 const ItemsCard = ({data}) => {
+
+  
   
   return (
     <div className='w-full flex flex-wrap gap-3 items-center justify-evenly'>

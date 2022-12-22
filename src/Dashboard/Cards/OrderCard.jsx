@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useStateValue } from '../../context/contextProvider';
 import { actionType } from '../../context/reducer';
 import { getAllPayments } from '../../utils.js/firebasefunctions';
-import moment from "moment";
 import { motion } from "framer-motion";
 
 const OrderCard = ({data, idx}) => {

@@ -10,8 +10,10 @@ import { ItemsCard } from './Cards';
 
 const DashboardItems = () => {
   const [{allItems }, dispatch] = useStateValue();
-  const [songfilter, setsongfilter] = useState('');
+  const [searchfield, setsearchfield] = useState('');
   const [isfocus, setisfocus] = useState(false);
+
+  
 
   useEffect(() => {
     if (!allItems) {
@@ -23,6 +25,10 @@ const DashboardItems = () => {
       })
     }
   }, [])
+
+  const filtereditem = allItems.filter(item =>{
+    return item.title.toLowerCase().includes(searchfield.toLowerCase());
+  })
   
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
@@ -32,8 +38,8 @@ const DashboardItems = () => {
       </NavLink>
       <input 
       className={`w-52 px-4 py-2 border ${isfocus? " border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-transparent outline-none duration-500 transition-all ease-in-out text-base text-textColor font-semibold`}
-      type='text' placeholder='search here ...' value={songfilter} 
-      onChange={(e)=>setsongfilter(e.target.value)}
+      type='text' placeholder='search here ...' value={searchfield} 
+      onChange={(e)=>setsearchfield(e.target.value)}
       onBlur={()=>setisfocus(false)}
       onFocus={()=>setisfocus(true)}
       />
@@ -49,7 +55,7 @@ const DashboardItems = () => {
       </p>
       </div>
       {/*Song container*/}   
-      <ItemsCard data={allItems} /> 
+      <ItemsCard data={filtereditem}  /> 
       </div>
     </div>
   )
