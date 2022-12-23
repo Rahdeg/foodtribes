@@ -9,3 +9,5 @@ export {default as Menucontainer} from './Menucontainer';
 export {default as Cartcontainer} from './Cartcontainer';
 export {default as Cartitem} from './Cartitem';
 export {default as Bike} from './Bike';
+export {default as PaymentSuccessful} from './PaymentSuccessful';
+export {default as PaymentError} from './PaymentError';

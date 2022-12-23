@@ -32,7 +32,7 @@ const DashboardUser = () => {
   return (
     <div className="w-full p-4 flex items-center justify-center flex-col">
       {/*filter*/}
-      <div className='w-full flex items-center justify-center gap-20'>
+      <div className='w-full flex flex-col md:flex-row items-center justify-center gap-20'>
       <input 
       className={`w-52 px-4 py-2 border ${isfocus? " border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-transparent outline-none duration-500 transition-all ease-in-out text-base text-textColor font-semibold`}
       type='text' placeholder='search here ...' value={searchfield} 
@@ -54,7 +54,7 @@ const DashboardUser = () => {
           </p>
         </div>
         {/*table heading*/}
-        <div className="w-full min-w-[750px] flex items-center justify-between">
+        <div className="w-full flex items-center justify-between">
           <p className="text-sm font-semibold text-textColor w-275 min-w-[160px] text-center">
             Image
           </p>

@@ -56,7 +56,7 @@ const DashboardBike = () => {
        </p>
      </div>
      {/*table heading*/}
-     <div className="w-full min-w-[750px] flex items-center justify-between">
+     <div className="w-full  flex items-center justify-between">
        <p className="text-sm font-semibold text-textColor w-275 min-w-[160px] text-center">
          ID
        </p>

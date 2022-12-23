@@ -5,6 +5,8 @@ import Loader from './Loader'
 import { savePayment, getAllPayments } from '../utils.js/firebasefunctions'
 import { actionType } from '../context/reducer'
 import { locations } from '../utils.js/Data'
+import { useNavigate } from 'react-router-dom'
+
 
 
 const Pay = () => {
@@ -18,7 +20,9 @@ const Pay = () => {
   const [msg, setmsg] = useState(null)
   const [isloading, setisloading] = useState(false)
   // eslint-disable-next-line no-unused-vars
-  const [{paymentdetails},dispatch] = useStateValue();
+  const [{paymentdetails,cartItem},dispatch] = useStateValue();
+
+  const navigate = useNavigate();
 
 
   const fetchPayments= async()=>{
@@ -28,6 +32,14 @@ const Pay = () => {
         paymentdetails:data
       })
     })
+  }
+
+  const clearitems =()=>{
+    dispatch({
+      type: actionType.SET_CART_ITEM,
+      cartItem: [],
+    });
+    localStorage.setItem("cartItem",JSON.stringify([]));
   }
 
   var date = new Date();
@@ -63,7 +75,9 @@ const Pay = () => {
         setTimeout(() => {
          setfield(false) 
         
-        }, 4000);
+        }, 1000);
+        setTimeout(()=>navigate('/success'),500);
+        clearitems();
       }
       
     } catch (error) {
@@ -73,7 +87,8 @@ const Pay = () => {
       setTimeout(() => {
         setfield(false)
         setisloading(false)
-      }, 4000);
+      }, 1000);
+      setTimeout(()=>navigate('/error'),500);
     }
     fetchPayments();
   }

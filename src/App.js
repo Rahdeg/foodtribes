@@ -1,5 +1,5 @@
 import './App.css';
-import {Header,Maincontainer,Pay,Menucontainer,Createitem, Bike} from './components'
+import {Header,Maincontainer,Pay,Menucontainer,Createitem, Bike,PaymentSuccessful,PaymentError} from './components'
 import { Route,Routes} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 import { useStateValue } from './context/contextProvider';
@@ -45,6 +45,8 @@ function App() {
       <Route path='/pay' element={<Pay/>} />
       <Route path='/bike' element={<Bike/>} />
       <Route path='/createitem' element={<Createitem/>} />
+      <Route path='/success' element={<PaymentSuccessful/>} />
+      <Route path='/error' element={<PaymentError/>} />
      </Routes>
      </main>
     </div>
