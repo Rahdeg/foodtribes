@@ -21,17 +21,17 @@ const DashboardBike = () => {
          })
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const filtereditem = bikedetails.filter(item =>{
-  //   return item.name.toLowerCase().includes(searchfield.toLowerCase());
-  // })
+  const filtereditem = bikedetails?.filter(item =>{
+    return item.name.toLowerCase().includes(searchfield.toLowerCase());
+  })
 
-  // console.log('see',filtereditem)
 
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
-    <div className='w-full flex items-center justify-center gap-20'>
+    <div className='w-full flex flex-col md:flex-row items-center justify-center gap-20'>
       <NavLink to={'/bike'} className="flex items-center justify-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shadow-md cursor-pointer">
       <IoAdd/>
       </NavLink>
@@ -78,8 +78,8 @@ const DashboardBike = () => {
      </div>
      {/*table content*/}
      {
-      bikedetails && (
-        bikedetails.map((data,idx)=>(
+      filtereditem && (
+        filtereditem.map((data,idx)=>(
            <Bikecard data={data} idx={idx}  />
            
          ))

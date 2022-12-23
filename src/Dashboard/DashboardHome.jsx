@@ -50,9 +50,9 @@ const DashboardHome = () => {
   
 
   return (
-    <div className='w-full p-6 flex items-center justify-evenly flex-wrap'>
-    <DashboardCard icon={<FaUsers className=' text-2xl text-textColor'/>} name="Users" count={allUsers?.length > 0 ?allUsers.length :0 }/>
-    <DashboardCard icon={<MdFoodBank className=' text-2xl text-textColor'/>} name="Foods" count={allItems?.length > 0 ?allItems.length :0 }/>
+    <div className='w-full p-6 flex items-center justify-evenly flex-wrap gap-5 '>
+    <DashboardCard icon={<FaUsers className=' text-2xl text-textColor '/>} name="Users" count={allUsers?.length > 0 ?allUsers.length :0 }/>
+    <DashboardCard icon={<MdFoodBank className=' text-2xl text-textColor '/>} name="Foods" count={allItems?.length > 0 ?allItems.length :0 }/>
     <DashboardCard icon={<MdOutlineBorderColor className=' text-2xl text-textColor'/>} name="Orders" count={paymentdetails?.length > 0 ?paymentdetails.length :0 }/>
     <DashboardCard icon={<RiEBike2Line className=' text-2xl text-textColor'/>} name="Bikes" count={bikedetails?.length > 0 ?bikedetails.length :0 }/>
     </div>

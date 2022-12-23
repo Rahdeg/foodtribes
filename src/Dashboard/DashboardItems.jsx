@@ -24,15 +24,16 @@ const DashboardItems = () => {
          })
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const filtereditem = allItems.filter(item =>{
+  const filtereditem = allItems?.filter(item =>{
     return item.title.toLowerCase().includes(searchfield.toLowerCase());
   })
   
   return (
     <div className='w-full p-4 flex items-center justify-center flex-col'>
-      <div className='w-full flex items-center justify-center gap-20'>
+      <div className='w-full flex flex-col md:flex-row items-center justify-center gap-20'>
       <NavLink to={'/createitem'} className="flex items-center justify-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shadow-md cursor-pointer">
       <IoAdd/>
       </NavLink>

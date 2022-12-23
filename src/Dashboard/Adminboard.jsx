@@ -15,12 +15,13 @@ const Adminboard = () => {
         {
           alertType
         },
+        // eslint-disable-next-line no-unused-vars
         dispatch,
       ] = useStateValue();
 
   return (
     <div className='w-full h-auto flex flex-col items-center justify-center bg-primary'>
-    <div className='w-[60%] my-2 p-4 flex items-center justify-evenly'>
+    <div className='w-[60%] my-2 p-4 flex flex-col md:flex-row gap-2 items-center justify-evenly'>
     <NavLink to={'/dashboard/home'} className={({isActive})=>isActive?isActiveStyles:isNotActiveStyles}><IoHome className='text-2xl text-textColor'/> </NavLink>
     <NavLink to={'/dashboard/users'} className={({isActive})=>isActive?isActiveStyles:isNotActiveStyles}>Users </NavLink>
     <NavLink to={'/dashboard/items'} className={({isActive})=>isActive?isActiveStyles:isNotActiveStyles}>Foods </NavLink>

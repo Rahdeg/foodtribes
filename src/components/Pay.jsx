@@ -17,6 +17,7 @@ const Pay = () => {
   const [alertstatus, setalertstatus] = useState("danger")
   const [msg, setmsg] = useState(null)
   const [isloading, setisloading] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [{paymentdetails},dispatch] = useStateValue();
 
 

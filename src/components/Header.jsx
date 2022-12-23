@@ -142,12 +142,22 @@ const login= async ()=>{
   initial={{opacity:0,scale:0.6}}
   animate={{opacity:1,scale:1}}
   exit={{opacity:0,scale:0.6}}
-  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col  absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/dashboard/home'}><p className='flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base'>Dashboard <MdAdd/></p></Link>)}  
+  className='w-40 bg-gray-50 shadow-xl  rounded-lg flex flex-col  absolute top-12 right-0'>  {user && user.email === "walett95@gmail.com" && (<Link to={'/dashboard/home'}><p className='flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base'
+  onClick={()=>setismenu(false)}
+  >Dashboard <MdAdd/></p></Link>)}  
   <ul className='flex flex-col'>
-   <Link to={'/'}> <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4'>Home</li></Link>
-    <Link to={'/menu'}><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>Menu</li></Link>
-    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'>About Us</li>
-    <li className=' text-base text-textColor hover:text-headingColor  hover:bg-slate-100 duration-100 transition-all ease-in-out cursor-pointer px-4 py-4'>Services</li>
+   <Link to={'/'}> <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4'
+   onClick={()=>setismenu(false)}
+   >Home</li></Link>
+    <Link to={'/menu'}><li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'
+    onClick={()=>setismenu(false)}
+    >Menu</li></Link>
+    <li className=' text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100'
+    onClick={()=>setismenu(false)}
+    >About Us</li>
+    <li className=' text-base text-textColor hover:text-headingColor  hover:bg-slate-100 duration-100 transition-all ease-in-out cursor-pointer px-4 py-4'
+    onClick={()=>setismenu(false)}
+    >Services</li>
   </ul>
   <p className='flex m-2 p-2 rounded-md shadow-md cursor-pointer items-center justify-center hover:bg-slate-300  bg-gray-200 transition-all duration-100 ease-in-out gap-3 text-textColor text-base 'onClick={logout}>Logout <MdLogout/></p> </motion.div> )}
   </div>
