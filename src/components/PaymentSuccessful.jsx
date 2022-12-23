@@ -11,7 +11,7 @@ const PaymentSuccessful = () => {
           <h1 class="text-4xl font-bold">Thank You  !</h1>
           <p>Thank you for your Order! Your Order is on the way.</p>
           <a
-            href='h'
+            href='/'
             class="inline-flex items-center px-4 py-2 text-white bg-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
