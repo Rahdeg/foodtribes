@@ -7,11 +7,17 @@
     SET_BIKE_DETAIL :"SET_BIKE_DETAIL",
     SET_ALLUSERS :"SET_ALLUSERS",
     SET_ALLITEMS :"SET_ALLITEMS",
+    SET_TOTALAMOUNT :"SET_TOTALAMOUNT",
  }
 
  const reducer= (state, action)=>{
 
     switch(action.type){
+        case actionType.SET_TOTALAMOUNT:
+            return {
+                ...state,
+                totalAmount:action.totalAmount,
+            };
 
         case actionType.SET_BIKE_DETAIL:
             return {

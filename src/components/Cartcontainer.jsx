@@ -11,7 +11,7 @@ import Cartitem from "./Cartitem";
 import { NavLink } from "react-router-dom";
 
 const Cartcontainer = () => {
-  const [{ cartShow,cartItem,user }, dispatch] = useStateValue();
+  const [{ cartShow,cartItem,user ,totalAmount}, dispatch] = useStateValue();
   const [flag, setFlag] = useState('');
   const [tot, settot] = useState('');
   const firebaseAuth= getAuth(app);
@@ -23,8 +23,12 @@ const Cartcontainer = () => {
       return acc + item.qty * item.price;
     },0)
     settot(totalPrice);
-    console.log(tot);
+    dispatch({
+      type:actionType.SET_TOTALAMOUNT,
+      totalAmount:tot + 2.5,
+    })
   
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tot,flag,cartItem])
   
   const login= async ()=>{

@@ -12,4 +12,5 @@ export const initialState={
     allUsers:null,
     allItems:null,
     bikedetails:null,
+    totalAmount:null,
 };

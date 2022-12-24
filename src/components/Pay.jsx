@@ -6,7 +6,7 @@ import { savePayment, getAllPayments } from '../utils.js/firebasefunctions'
 import { actionType } from '../context/reducer'
 import { locations } from '../utils.js/Data'
 import { useNavigate } from 'react-router-dom'
-
+import PaystackPop from '@paystack/inline-js'
 
 
 const Pay = () => {
@@ -20,10 +20,9 @@ const Pay = () => {
   const [msg, setmsg] = useState(null)
   const [isloading, setisloading] = useState(false)
   // eslint-disable-next-line no-unused-vars
-  const [{paymentdetails,cartItem},dispatch] = useStateValue();
+  const [{paymentdetails,cartItem,user,totalAmount},dispatch] = useStateValue();
 
   const navigate = useNavigate();
-
 
   const fetchPayments= async()=>{
     await getAllPayments().then(data=>{
@@ -33,6 +32,26 @@ const Pay = () => {
       })
     })
   }
+
+  console.log('total',totalAmount)
+ 
+  console.log('user',user.email)
+  
+
+  // const componentProps = {
+  //   email:user.email,
+  //   amount:totalAmount,
+  //   metadata: {
+  //     name,
+  //     phone:number,
+  //   },
+  //   publicKey,
+  //   text: "Pay Now",
+  //   onSuccess: () =>{setTimeout(()=>navigate('/success'),500);
+  //   clearitems();},
+  //   onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+  // }
+  
 
   const clearitems =()=>{
     dispatch({
@@ -45,6 +64,20 @@ const Pay = () => {
   var date = new Date();
 	var current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
   var current_time = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+
+  const paywithPay = (e) =>{
+    e.preventDefault();
+    saveDetails();
+    const paystack = new PaystackPop();
+    paystack.newTransaction({
+      key:"pk_test_6183142952221bff69fa7f86fa16774082cb6254",
+      amount:totalAmount*100,
+      email:user.email,
+      name:name,
+      onSuccess: () =>{setTimeout(()=>navigate('/success'),500);},
+      onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+    })
+  }
 
   const saveDetails=()=>{
     setisloading(true);
@@ -65,6 +98,7 @@ const Pay = () => {
           message:message,
           location:location,
           createdAt:[current_date,current_time],
+          Amount:totalAmount,
         }
         savePayment(data);
         setisloading(false)
@@ -74,9 +108,7 @@ const Pay = () => {
         setalertstatus("success")
         setTimeout(() => {
          setfield(false) 
-        
         }, 1000);
-        setTimeout(()=>navigate('/success'),500);
         clearitems();
       }
       
@@ -149,7 +181,7 @@ id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gra
 </div>
 <div className='flex items-center justify-center'>
 <button 
-onClick={saveDetails}
+onClick={paywithPay}
 type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pay</button>
 </div>
 </form>
