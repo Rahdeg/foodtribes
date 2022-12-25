@@ -1,21 +1,17 @@
-import React from 'react'
-import {motion} from 'framer-motion'
-import Notfound from '../../img/NotFound.svg'
-import { MdDelete } from 'react-icons/md'
+import React from "react";
+import { motion } from "framer-motion";
+import Notfound from "../../img/NotFound.svg";
+import { MdDelete } from "react-icons/md";
 
-
-const ItemsCard = ({data}) => {
-
-  
-  
+const ItemsCard = ({ data }) => {
   return (
-    <div className='w-full flex flex-wrap gap-3 items-center justify-evenly'>
-    {
-        data && data.length >0 ? data.map((item,idx)=>(
-            <div
+    <div className="w-full flex flex-wrap gap-3 items-center justify-evenly">
+      {data && data.length > 0 ? (
+        data.map((item, idx) => (
+          <div
             key={idx}
-             className="w-300 min-w-[200px] md:min-w-[340px] md:w-350 h-auto bg-cardOverlay backdrop-blur-lg my-12 p-2 hover:drop-shadow-lg cursor-pointer rounded-md flex flex-col items-center justify-between">
-            
+            className="w-300 min-w-[200px] md:min-w-[340px] md:w-350 h-auto bg-cardOverlay backdrop-blur-lg my-12 p-2 hover:drop-shadow-lg cursor-pointer rounded-md flex flex-col items-center justify-between"
+          >
             <div className="w-full flex items-center justify-between ">
               <motion.img
                 whileHover={{ scale: 1.2 }}
@@ -23,16 +19,16 @@ const ItemsCard = ({data}) => {
                 className="w-40 h-40 -mt-8 drop-shadow-2xl"
                 alt="ice"
               />
-        <motion.div 
-        whileTap={{scale:0.75}}
-        className="w-8 h-8  rounded-md flex items-center justify-center bg-gray-200"
-        >
-        <MdDelete className=" text-xl text-red-400 hover:text-red-500"/>
-        </motion.div>
+              <motion.div
+                whileTap={{ scale: 0.75 }}
+                className="w-8 h-8  rounded-md flex items-center justify-center bg-gray-200"
+              >
+                <MdDelete className=" text-xl text-red-400 hover:text-red-500" />
+              </motion.div>
             </div>
             <div className="w-full flex flex-col items-end justify-end">
               <p className=" text-textColor text-base  font-semibold md:text-lg">
-               {item.title}
+                {item.title}
               </p>
               <p className="mt-1 text-sm text-gray-500">{item?.calories}</p>
               <div className="flex items-center gap-8">
@@ -42,14 +38,17 @@ const ItemsCard = ({data}) => {
               </div>
             </div>
           </div>
-          )):<div
-          className="w-full flex  flex-col items-center justify-center">
-          <img src={Notfound} alt="nn" className=" h-[350px] my-2"/>
-          <p className="text-xl text-textColor font-semibold">Items Not available at the moment</p>
-          </div>
-    }
-</div>
-  )
-}
+        ))
+      ) : (
+        <div className="w-full flex  flex-col items-center justify-center">
+          <img src={Notfound} alt="nn" className=" h-[350px] my-2" />
+          <p className="text-xl text-textColor font-semibold">
+            Items Not available at the moment
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default ItemsCard
+export default ItemsCard;

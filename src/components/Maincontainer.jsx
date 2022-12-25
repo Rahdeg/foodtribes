@@ -9,11 +9,11 @@ import Cartcontainer from "./Cartcontainer";
 
 const Maincontainer = () => {
   // eslint-disable-next-line no-unused-vars
-  const [{ foodItems,cartShow }, dispatch] = useStateValue();
-  
+  const [{ foodItems, cartShow }, dispatch] = useStateValue();
+
   const [scrolvalue, setScrolValue] = useState(0);
 
-  useEffect(() => {}, [scrolvalue,cartShow]);
+  useEffect(() => {}, [scrolvalue, cartShow]);
 
   return (
     <div className="w-full h-auto flex flex-col item-center justify-center">
@@ -50,14 +50,8 @@ const Maincontainer = () => {
           scrolvalue={scrolvalue}
         />
       </section>
-      <Menucontainer/>
-      {
-        cartShow && (
-          <Cartcontainer/>
-        )
-      }
-      
-     
+      <Menucontainer />
+      {cartShow && <Cartcontainer />}
     </div>
   );
 };

@@ -1,45 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { AiOutlineClear } from 'react-icons/ai';
-import { useStateValue } from '../context/contextProvider';
-import { actionType } from '../context/reducer';
-import { getAllPayments } from '../utils.js/firebasefunctions';
-import { OrderCard } from './Cards';
+import React, { useEffect, useState } from "react";
+import { AiOutlineClear } from "react-icons/ai";
+import { useStateValue } from "../context/contextProvider";
+import { actionType } from "../context/reducer";
+import { getAllPayments } from "../utils.js/firebasefunctions";
+import { OrderCard } from "./Cards";
 
 const DashboardOrder = () => {
-  const [{paymentdetails}, dispatch] = useStateValue();
-  const [searchfield, setsearchfield] = useState('');
+  const [{ paymentdetails }, dispatch] = useStateValue();
+  const [searchfield, setsearchfield] = useState("");
   const [isfocus, setisfocus] = useState(false);
 
   useEffect(() => {
     if (!paymentdetails) {
-      getAllPayments().then((data)=>{
+      getAllPayments().then((data) => {
         dispatch({
           type: actionType.SET_PAYMENT_DETAIL,
           paymentdetails: data,
-         })
-      })
+        });
+      });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const filtereditem = paymentdetails?.filter(item =>{
+  const filtereditem = paymentdetails?.filter((item) => {
     return item.name.toLowerCase().includes(searchfield.toLowerCase());
-  })
-
-  
+  });
 
   return (
     <div className="w-full p-4 flex items-center justify-center flex-col">
       {/*filter*/}
-      <div className='w-full  flex flex-col md:flex-row items-center justify-center gap-20'>
-      <input 
-      className={`w-52 px-4 py-2 border ${isfocus? " border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-transparent outline-none duration-500 transition-all ease-in-out text-base text-textColor font-semibold`}
-      type='text' placeholder='search here ...' value={searchfield} 
-      onChange={(e)=>setsearchfield(e.target.value)}
-      onBlur={()=>setisfocus(false)}
-      onFocus={()=>setisfocus(true)}
-      />
-      <AiOutlineClear className=' text-3xl text-textColor cursor-pointer'/>
+      <div className="w-full  flex flex-col md:flex-row items-center justify-center gap-20">
+        <input
+          className={`w-52 px-4 py-2 border ${
+            isfocus ? " border-gray-500 shadow-md" : "border-gray-300"
+          } rounded-md bg-transparent outline-none duration-500 transition-all ease-in-out text-base text-textColor font-semibold`}
+          type="text"
+          placeholder="search here ..."
+          value={searchfield}
+          onChange={(e) => setsearchfield(e.target.value)}
+          onBlur={() => setisfocus(false)}
+          onFocus={() => setisfocus(true)}
+        />
+        <AiOutlineClear className=" text-3xl text-textColor cursor-pointer" />
       </div>
       {/*tabular data form*/}
       <div className="relative w-full py-12 min-h-[400px] overflow-x-scroll my-4 flex flex-col items-center justify-start p-4 border border-gray-300 rounded-md gap-3 bg-white">
@@ -74,17 +76,11 @@ const DashboardOrder = () => {
           </p>
         </div>
         {/*table content*/}
-        {
-          filtereditem && (
-            filtereditem.map((data,idx)=>(
-              <OrderCard data={data} idx={idx} />
-              
-            ))
-          )
-        }
+        {filtereditem &&
+          filtereditem.map((data, idx) => <OrderCard data={data} idx={idx} />)}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardOrder
+export default DashboardOrder;
