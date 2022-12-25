@@ -72,7 +72,7 @@ const Header = () => {
         provider: providerData[0].providerId,
         createdAt: [current_date, current_time],
       };
-      getAllUser()
+      getAllUser();
 
       const info = allUsers?.filter((item) => item.email === data.email);
 
@@ -90,7 +90,7 @@ const Header = () => {
     <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
       {/*desktop..tablet*/}
       <div className="hidden md:flex w-full h-full items-center justify-between">
-        <Link to={"/"} className=" flex items-center gap-2">
+        <a href="/" className=" flex items-center gap-2">
           <motion.img
             whileTap={{ scale: 0.6 }}
             src={logo}
@@ -98,7 +98,7 @@ const Header = () => {
             className=" w-8 object-cover"
           />
           <p className=" text-headingColor text-xl font-bold">City</p>
-        </Link>
+        </a>
         <div className="flex items-center gap-8">
           <motion.ul
             initial={{ opacity: 0, x: 200 }}
@@ -106,16 +106,16 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-8 "
           >
-            <Link to={"/"}>
+            <a href="/">
               <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
                 Home
               </li>
-            </Link>
-            <Link to={"/menu"}>
+            </a>
+            <a href="/menu">
               <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
                 Menu
               </li>
-            </Link>
+            </a>
             <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               About Us
             </li>
@@ -153,14 +153,14 @@ const Header = () => {
               >
                 {" "}
                 {user && user.email === "walett95@gmail.com" && (
-                  <Link to={"/dashboard/home"}>
+                  <a href={"/dashboard/home"}>
                     <p
                       className="flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
                       onClick={() => setismenu(false)}
                     >
                       Dashboard <MdAdd />
                     </p>
-                  </Link>
+                  </a>
                 )}
                 <p
                   className="flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
@@ -188,7 +188,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <Link to={"/"} className="flex items-center gap-2">
+        <a href={"/"} className="flex items-center gap-2">
           <motion.img
             whileTap={{ scale: 0.6 }}
             src={logo}
@@ -196,7 +196,7 @@ const Header = () => {
             className=" w-8 object-cover"
           />
           <p className=" text-headingColor text-xl font-bold">City</p>
-        </Link>
+        </a>
         <div className="relative">
           <motion.img
             whileTap={{ scale: 0.6 }}
@@ -213,17 +213,21 @@ const Header = () => {
             >
               {" "}
               {user && user.email === "walett95@gmail.com" && (
-                <Link to={"/dashboard/home"}>
+                <a
+                href={"/dashboard/home"}
+                >
                   <p
                     className="flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
                     onClick={() => setismenu(false)}
                   >
                     Dashboard <MdAdd />
                   </p>
-                </Link>
+                </a>
               )}
               <ul className="flex flex-col">
-                <Link to={"/"}>
+                <a
+                href={"/"}
+                >
                   {" "}
                   <li
                     className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4"
@@ -231,15 +235,17 @@ const Header = () => {
                   >
                     Home
                   </li>
-                </Link>
-                <Link to={"/menu"}>
+                </a>
+                <a 
+                href={"/menu"}
+                >
                   <li
                     className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100"
                     onClick={() => setismenu(false)}
                   >
                     Menu
                   </li>
-                </Link>
+                </a>
                 <li
                   className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100"
                   onClick={() => setismenu(false)}
