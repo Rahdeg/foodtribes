@@ -55,7 +55,6 @@ const Header = () => {
     if (!user) {
       // eslint-disable-next-line no-unused-vars
       const {
-        // eslint-disable-next-line no-unused-vars
         user: { refreshToken, providerData },
       } = await signInWithPopup(firebaseAuth, provider);
       dispatch({
@@ -72,7 +71,6 @@ const Header = () => {
         provider: providerData[0].providerId,
         createdAt: [current_date, current_time],
       };
-      getAllUser();
 
       const info = allUsers?.filter((item) => item.email === data.email);
 
@@ -90,7 +88,7 @@ const Header = () => {
     <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
       {/*desktop..tablet*/}
       <div className="hidden md:flex w-full h-full items-center justify-between">
-        <a href="/" className=" flex items-center gap-2">
+        <Link to={"/"} className=" flex items-center gap-2">
           <motion.img
             whileTap={{ scale: 0.6 }}
             src={logo}
@@ -98,7 +96,7 @@ const Header = () => {
             className=" w-8 object-cover"
           />
           <p className=" text-headingColor text-xl font-bold">City</p>
-        </a>
+        </Link>
         <div className="flex items-center gap-8">
           <motion.ul
             initial={{ opacity: 0, x: 200 }}
@@ -106,16 +104,16 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-8 "
           >
-            <a href="/">
+            <Link to={"/"}>
               <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
                 Home
               </li>
-            </a>
-            <a href="/menu">
+            </Link>
+            <Link to={"/menu"}>
               <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
                 Menu
               </li>
-            </a>
+            </Link>
             <li className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               About Us
             </li>
@@ -153,14 +151,14 @@ const Header = () => {
               >
                 {" "}
                 {user && user.email === "walett95@gmail.com" && (
-                  <a href={"/dashboard/home"}>
+                  <Link to={"/dashboard/home"}>
                     <p
                       className="flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
                       onClick={() => setismenu(false)}
                     >
                       Dashboard <MdAdd />
                     </p>
-                  </a>
+                  </Link>
                 )}
                 <p
                   className="flex px-4 py-2 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
@@ -188,7 +186,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <a href={"/"} className="flex items-center gap-2">
+        <Link to={"/"} className="flex items-center gap-2">
           <motion.img
             whileTap={{ scale: 0.6 }}
             src={logo}
@@ -196,7 +194,7 @@ const Header = () => {
             className=" w-8 object-cover"
           />
           <p className=" text-headingColor text-xl font-bold">City</p>
-        </a>
+        </Link>
         <div className="relative">
           <motion.img
             whileTap={{ scale: 0.6 }}
@@ -213,21 +211,17 @@ const Header = () => {
             >
               {" "}
               {user && user.email === "walett95@gmail.com" && (
-                <a
-                href={"/dashboard/home"}
-                >
+                <Link to={"/dashboard/home"}>
                   <p
                     className="flex px-4 py-4 cursor-pointer items-center  hover:bg-slate-100 transition-all duration-100 ease-in-out gap-3 text-textColor text-base"
                     onClick={() => setismenu(false)}
                   >
                     Dashboard <MdAdd />
                   </p>
-                </a>
+                </Link>
               )}
               <ul className="flex flex-col">
-                <a
-                href={"/"}
-                >
+                <Link to={"/"}>
                   {" "}
                   <li
                     className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  hover:bg-slate-100 px-4 py-4"
@@ -235,17 +229,15 @@ const Header = () => {
                   >
                     Home
                   </li>
-                </a>
-                <a 
-                href={"/menu"}
-                >
+                </Link>
+                <Link to={"/menu"}>
                   <li
                     className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100"
                     onClick={() => setismenu(false)}
                   >
                     Menu
                   </li>
-                </a>
+                </Link>
                 <li
                   className=" text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-4 hover:bg-slate-100"
                   onClick={() => setismenu(false)}

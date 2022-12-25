@@ -8,6 +8,7 @@ import { app } from "../Firebase.config";
 import { actionType } from "../context/reducer";
 import emtycart from "../img/emptyCart.svg";
 import Cartitem from "./Cartitem";
+import { NavLink } from "react-router-dom";
 
 const Cartcontainer = () => {
   // eslint-disable-next-line no-unused-vars
@@ -35,7 +36,6 @@ const Cartcontainer = () => {
     if (!user) {
       // eslint-disable-next-line no-unused-vars
       const {
-        // eslint-disable-next-line no-unused-vars
         user: { refreshToken, providerData },
       } = await signInWithPopup(firebaseAuth, provider);
       dispatch({
@@ -120,12 +120,12 @@ const Cartcontainer = () => {
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg "
               >
-                <a
-                  href="/pay"
+                <NavLink
+                  to={"/pay"}
                   className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to bg-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg "
                 >
                   Check Out
-                </a>
+                </NavLink>
               </motion.button>
             ) : (
               <motion.button

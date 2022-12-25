@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useStateValue } from "../context/contextProvider";
 import Loader from "./Loader";
@@ -16,25 +16,13 @@ const Pay = () => {
   const [field, setfield] = useState(false);
   const [alertstatus, setalertstatus] = useState("danger");
   const [msg, setmsg] = useState(null);
-  const [tot, settot] = useState("");
   const [isloading, setisloading] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [{ paymentdetails, cartItem, user, totalAmount }, dispatch] =
     useStateValue();
 
 
-    useEffect(() => {
-      let totalPrice = cartItem?.reduce(function (acc, item) {
-        return acc + item.qty * item.price;
-      }, 0);
-      settot(totalPrice);
-      dispatch({
-        type: actionType.SET_TOTALAMOUNT,
-        totalAmount: tot + 2.5,
-      });
-  
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [tot, cartItem]);  
+    
     
 
   const navigate = useNavigate();
