@@ -72,6 +72,7 @@ const Header = () => {
         provider: providerData[0].providerId,
         createdAt: [current_date, current_time],
       };
+      getAllUser()
 
       const info = allUsers?.filter((item) => item.email === data.email);
 
