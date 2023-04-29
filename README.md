@@ -1,8 +1,8 @@
-## Restaurant App
+# Restaurant App
 
 This is a web application built using React.js, Tailwind CSS, and Firebase. The purpose of this application is to allow users to order for food from restaurant and view information about them, including their location, menu, and reviews.
 
-# Features
+## Features
 Authentication using Firebase Authentication
 
 Display available menu at the restaurant
@@ -11,7 +11,7 @@ Allows user to make  order
 
 payment for Order using flutterwave payment gateway
 
-# Installation
+## Installation
 
 Clone the repository: git clone https://github.com/Rahdeg/foodtribes.git
 
@@ -29,7 +29,7 @@ Create a .env file in the root directory and add the Firebase configuration obje
 
 Run the app: npm start
 
-# Acknowledgements
+## Acknowledgements
 React
 
 Tailwind CSS
