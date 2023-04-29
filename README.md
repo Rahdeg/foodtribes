@@ -7,7 +7,7 @@ Authentication using Firebase Authentication
 
 Display available menu at the restaurant
 
-make user order their menu
+Allows user to make  order 
 
 payment for Order using flutterwave payment gateway
 
