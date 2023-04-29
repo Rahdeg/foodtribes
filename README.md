@@ -29,3 +29,10 @@ Create a .env file in the root directory and add the Firebase configuration obje
 
 Run the app: npm start
 
+# Acknowledgements
+React
+
+Tailwind CSS
+
+Firebase
+
