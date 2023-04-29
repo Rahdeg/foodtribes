@@ -13,7 +13,7 @@ payment for Order using flutterwave payment gateway
 
 # Installation
 
-Clone the repository: git clone https://github.com/your-username/restaurant-app.git
+Clone the repository: git clone https://github.com/Rahdeg/foodtribes.git
 
 Install dependencies: npm install
 
